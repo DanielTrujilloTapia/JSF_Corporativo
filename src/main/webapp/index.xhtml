@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+   <title>Mi Aplicación JSF con HTML5</title>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <h:outputStylesheet name="/css/index.css" /> <!-- Enlazar CSS -->
+</h:head>
+<h:body>
+   <header>
+      <h1>Bienvenido a mi aplicación JSF</h1>
+      <nav>
+         <ul>
+            <li><h:link outcome="index">Inicio</h:link></li>
+            <li><h:link outcome="about">Acerca de</h:link></li>
+         </ul>
+      </nav>
+   </header>
+
+   <main>
+      <h:form>
+         <label for="nombre">Ingresa tu nombre:</label>
+         <h:inputText id="nombre" value="#{miBean.nombre}" />
+         <h:commandButton value="Saludar" action="#{miBean.saludar}" />
+      </h:form>
+
+      <section>
+         <h2>Mensaje:</h2>
+         <p><h:outputText value="#{miBean.mensaje}" /></p>
+      </section>
+   </main>
+
+   <footer>
+      <p>2023 Mi Aplicación JSF</p>
+   </footer>
+</h:body>
+</html>
