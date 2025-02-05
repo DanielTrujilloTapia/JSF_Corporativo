@@ -3,37 +3,153 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-   <title>Mi Aplicación JSF con HTML5</title>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <h:outputStylesheet name="/css/index.css" /> <!-- Enlazar CSS -->
+   <title>Login</title>
+   <meta charset="UTF-8"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Añadido para responsividad -->
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: Arial, sans-serif;
+      }
+
+      body {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         height: 100vh;
+         background: #f4f4f4;
+      }
+
+      .container {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width: 100%;
+         padding: 20px; /* Añadido para espaciado en móviles */
+      }
+
+      .login-box {
+         padding: 20px 40px;
+         width: 100%;
+         max-width: 380px; /* Limita el ancho máximo */
+         text-align: center;
+         background: white;
+         border-radius: 5px;
+         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .login-box h2 {
+         margin-top: 20px;
+         margin-bottom: 30px;
+         color: #333;
+      }
+
+      .input-group {
+         display: flex;
+         align-items: center;
+         width: 100%;
+         margin-bottom: 15px;
+         border: 1px solid #ccc;
+         border-radius: 2px;
+         padding: 10px;
+         background: #f9f9f9;
+      }
+
+      .input-group .icon {
+         width: 20px;
+         margin-right: 10px;
+      }
+
+      .input-group input {
+         width: 100%;
+         border: none;
+         outline: none;
+         background: none;
+      }
+
+      .options {
+         display: flex;
+         justify-content: space-between;
+         width: 100%;
+         font-size: 14px;
+         margin-bottom: 30px;
+         margin-top: 30px;
+      }
+
+      .login-button {
+         width: 100%;
+         padding: 10px;
+         background: #0056b3;
+         color: white;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         font-size: 16px;
+      }
+
+      .login-button:hover {
+         background: #053a77;
+      }
+
+      /* Media Queries para responsividad */
+      @media (max-width: 768px) {
+         .login-box {
+            padding: 20px; /* Reducir el padding en móviles */
+         }
+
+         .options {
+            flex-direction: row; /* Cambiar a columna en móviles */
+            align-items: center;
+            gap: 10px; /* Espacio entre elementos */
+         }
+
+         .login-button {
+            font-size: 14px; /* Reducir el tamaño de la fuente en móviles */
+         }
+      }
+
+      @media (max-width: 480px) {
+         .login-box {
+            max-width: 100%; /* Ocupar todo el ancho en pantallas muy pequeñas */
+         }
+
+         .input-group {
+            padding: 8px; /* Reducir el padding en pantallas muy pequeñas */
+         }
+
+         .login-box h2 {
+            font-size: 20px; /* Reducir el tamaño del título */
+         }
+      }
+   </style>
 </h:head>
 <h:body>
-   <header>
-      <h1>Bienvenido a mi aplicación JSF</h1>
-      <nav>
-         <ul>
-            <li><h:link outcome="index">Inicio</h:link></li>
-            <li><h:link outcome="about">Acerca de</h:link></li>
-         </ul>
-      </nav>
-   </header>
-
-   <main>
-      <h:form>
-         <label for="nombre">Ingresa tu nombre:</label>
-         <h:inputText id="nombre" value="#{miBean.nombre}" />
-         <h:commandButton value="Saludar" action="#{miBean.saludar}" />
-      </h:form>
-
-      <section>
-         <h2>Mensaje:</h2>
-         <p><h:outputText value="#{miBean.mensaje}" /></p>
-      </section>
-   </main>
-
-   <footer>
-      <p>2023 Mi Aplicación JSF</p>
-   </footer>
+   <div class="container">
+      <div class="login-box">
+         <h:form>
+            <h2>Login please</h2>
+            <div class="input-group">
+               <h:graphicImage name="3494619.png" library="images" class="icon"/>
+               <h:inputText id="usuario" value="#{miBean.usuario}" required="true" placeholder="Input your user ID or Email"/>
+            </div>
+            <div class="input-group">
+               <h:graphicImage name="17243488.png" library="images" class="icon"/>
+               <h:inputSecret id="password" value="#{miBean.password}" required="true" placeholder="Input your password"/>
+            </div>
+            <div class="options">
+               <div>
+                  <h:selectBooleanCheckbox id="remember"/>
+                  <h:outputLabel for="remember">Remember me</h:outputLabel>
+               </div>
+               <div>
+                  <h:outputLink value="#">Forgot Password?</h:outputLink>
+               </div>
+            </div>
+            <h:commandButton value="LOG IN" action="#{miBean.validarUsuario()}" styleClass="login-button"/>
+         </h:form>
+      </div>
+   </div>
 </h:body>
 </html>

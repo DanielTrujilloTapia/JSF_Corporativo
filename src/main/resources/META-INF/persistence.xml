@@ -4,6 +4,36 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="default">
+        <!-- Proveedor de JPA (EclipseLink) -->
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
+        <!-- Clases de entidad (tus modelos JPA) -->
+        <!--<class>com.example.jsf_corporativo.model.UserModel</class> Reemplaza con tus entidades -->
+
+        <!-- Propiedades de la base de datos -->
+        <properties>
+            <!-- Driver de SQL Server -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+
+            <!-- URL de la base de datos (ajusta según tu configuración) -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://DESKTOP-QECQKU8:1433;databaseName=corp_tortillas;encrypt=false"/>
+
+            <!-- Usuario de la base de datos -->
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+
+            <!-- Contraseña de la base de datos -->
+            <property name="jakarta.persistence.jdbc.password" value="1234"/>
+
+            <!-- Dialecto de EclipseLink (para SQL Server) -->
+            <property name="eclipselink.target-database" value="SQLServer"/>
+
+            <!-- Opcional: Crear/actualizar automáticamente las tablas en la base de datos -->
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+
+            <!-- Opcional: Mostrar las consultas SQL en la consola -->
+            <!--<property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+            -->
+        </properties>
     </persistence-unit>
 </persistence>
