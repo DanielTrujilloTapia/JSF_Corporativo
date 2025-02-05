@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
    <title>Login</title>
    <meta charset="UTF-8"/>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Añadido para responsividad -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
    <style>
       * {
          margin: 0;
@@ -27,13 +26,13 @@
          justify-content: center;
          align-items: center;
          width: 100%;
-         padding: 20px; /* Añadido para espaciado en móviles */
+         padding: 20px;
       }
 
       .login-box {
          padding: 20px 40px;
          width: 100%;
-         max-width: 380px; /* Limita el ancho máximo */
+         max-width: 380px;
          text-align: center;
          background: white;
          border-radius: 5px;
@@ -93,63 +92,77 @@
          background: #053a77;
       }
 
-      /* Media Queries para responsividad */
       @media (max-width: 768px) {
          .login-box {
-            padding: 20px; /* Reducir el padding en móviles */
+            padding: 20px;
          }
 
          .options {
-            flex-direction: row; /* Cambiar a columna en móviles */
+            flex-direction: row;
             align-items: center;
-            gap: 10px; /* Espacio entre elementos */
+            gap: 10px;
          }
 
          .login-button {
-            font-size: 14px; /* Reducir el tamaño de la fuente en móviles */
+            font-size: 14px;
          }
       }
 
       @media (max-width: 480px) {
          .login-box {
-            max-width: 100%; /* Ocupar todo el ancho en pantallas muy pequeñas */
+            max-width: 100%;
          }
 
          .input-group {
-            padding: 8px; /* Reducir el padding en pantallas muy pequeñas */
+            padding: 8px;
          }
 
          .login-box h2 {
-            font-size: 20px; /* Reducir el tamaño del título */
+            font-size: 20px;
          }
       }
    </style>
-</h:head>
-<h:body>
-   <div class="container">
-      <div class="login-box">
-         <h:form>
-            <h2>Login please</h2>
-            <div class="input-group">
-               <h:graphicImage name="3494619.png" library="images" class="icon"/>
-               <h:inputText id="usuario" value="#{miBean.usuario}" required="true" placeholder="Input your user ID or Email"/>
+   <script>
+      function validarLogin(event) {
+         event.preventDefault();
+         let email = document.getElementById("email").value;
+         let password = document.getElementById("password").value;
+
+         // Simulación de validación exitosa
+         if (email === "7731696150d@gmail.com" &amp;&amp; password === "12345678") {
+            window.location.href = "dashboard.xhtml"; // Redirección si las credenciales son correctas
+            console.log(email, password);
+         } else {
+            alert("email o contraseña incorrectos.");
+         }
+      }
+   </script>
+</head>
+<body>
+<div class="container">
+   <div class="login-box">
+      <h2>Login please</h2>
+      <form onsubmit="validarLogin(event)">
+         <div class="input-group">
+            <h:graphicImage name="3494619.png" library="images" class="icon" alt="User Icon"/>
+            <input type="email" id="email" placeholder="Input your user ID or Email" maxlength="50" />
+         </div>
+         <div class="input-group">
+            <h:graphicImage name="17243488.png" library="images" class="icon" alt="Password Icon"/>
+            <input type="password" id="password" placeholder="Input your password" maxlength="8" pattern="^\S*$" title="La contraseña no puede contener espacios."/>
+         </div>
+         <div class="options">
+            <div>
+               <input type="checkbox" id="remember"/>
+               <label for="remember">Remember me</label>
             </div>
-            <div class="input-group">
-               <h:graphicImage name="17243488.png" library="images" class="icon"/>
-               <h:inputSecret id="password" value="#{miBean.password}" required="true" placeholder="Input your password"/>
+            <div>
+               <a href="#">Forgot Password?</a>
             </div>
-            <div class="options">
-               <div>
-                  <h:selectBooleanCheckbox id="remember"/>
-                  <h:outputLabel for="remember">Remember me</h:outputLabel>
-               </div>
-               <div>
-                  <h:outputLink value="#">Forgot Password?</h:outputLink>
-               </div>
-            </div>
-            <h:commandButton value="LOG IN" action="#{miBean.validarUsuario()}" styleClass="login-button"/>
-         </h:form>
-      </div>
+         </div>
+         <button type="submit" class="login-button">LOG IN</button>
+      </form>
    </div>
-</h:body>
+</div>
+</body>
 </html>
