@@ -130,10 +130,11 @@
 
          // Simulación de validación exitosa
          if (email === "7731696150d@gmail.com" &amp;&amp; password === "12345678") {
-            window.location.href = "dashboard.xhtml"; // Redirección si las credenciales son correctas
+            window.location.href = "empleados.xhtml"; // Redirección si las credenciales son correctas
             console.log(email, password);
          } else {
             alert("email o contraseña incorrectos.");
+            window.location.href = "error.html"; // Redirección si las credenciales son correctas
          }
       }
    </script>

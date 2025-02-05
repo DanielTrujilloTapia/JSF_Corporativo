@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+    <title>Registro de Empleados</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: #f9f9f9;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<ui:include src="/menu.xhtml"/>
+<h2>Registro de Empleado</h2>
+<table>
+    <tr>
+        <th>Campo</th>
+        <th>Valor</th>
+    </tr>
+    <tr>
+        <td><label for="nombre">Nombre:</label></td>
+        <td><input type="text" id="nombre" /><span class="error"></span></td>
+    </tr>
+    <tr>
+        <td><label for="email">Email:</label></td>
+        <td><input type="email" id="email" /><span class="error"></span></td>
+    </tr>
+    <tr>
+        <td><label for="telefono">Teléfono:</label></td>
+        <td><input type="text" id="telefono" pattern="\d{10}" /><span class="error"></span></td>
+    </tr>
+    <tr>
+        <td><label for="salario">Salario:</label></td>
+        <td><input type="number" id="salario" min="0" /><span class="error"></span></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            <button type="submit" style="background-color: #007bff; color: white; padding: 10px; border: none; cursor: pointer;">Registrar</button>
+        </td>
+    </tr>
+</table>
+<!-- Componente reutilizable -->
+<div id="componente-ui"></div>
+</body>
+</html>
