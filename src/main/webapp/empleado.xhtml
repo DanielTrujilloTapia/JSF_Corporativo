@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 <head>
     <title>Registro de Empleados</title>
     <meta charset="UTF-8"/>
@@ -66,10 +67,126 @@
         .form-group button:hover {
             background-color: #0056b3;
         }
+
+        /*MENUUUUUU*/
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Estilos del Sidebar */
+        .sidebar {
+            position: fixed;
+            left: -260px;
+            top: 0;
+            width: 260px;
+            height: 100%;
+            background: #1a237e; /* Azul corporativo */
+            color: white;
+            transition: left 0.3s ease-in-out;
+            padding-top: 60px;
+            box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        /* Botón de menú */
+        .menu-btn {
+            position: fixed;
+            left: 15px;
+            top: 15px;
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: #1a237e;
+            cursor: pointer;
+            z-index: 1100;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .menu-btn.active {
+            color: white; /* Se vuelve blanco cuando el menú está abierto */
+        }
+
+        /* Fondo oscuro cuando el menú está abierto */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 900;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Logo corporativo */
+        .sidebar .logo {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 15px;
+            background: #283593;
+            letter-spacing: 1px;
+        }
+
+        /* Lista del menú */
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 12px 20px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background: #3949ab;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
     </style>
 </head>
 <body>
-<ui:include src="/menu.xhtml"/>
+<button id="menu-btn" class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<!-- Fondo oscuro para cerrar el menú al hacer clic afuera -->
+<div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+    <div class="logo">🔹 Corporativo</div>
+    <ul>
+        <li><h:outputLink value="empleado.xhtml">👥 Empleados</h:outputLink></li>
+        <li><h:outputLink value="suministros.xhtml">📦 Suministros</h:outputLink></li>
+        <li><h:outputLink value="almacen.xhtml">🏢 Almacén</h:outputLink></li>
+        <li><h:outputLink value="ventas.xhtml">💰 Ventas</h:outputLink></li>
+        <li><h:outputLink value="reportes.xhtml">📑 Reportes</h:outputLink></li>
+        <li><h:outputLink value="configuracion.xhtml">⚙ Configuración</h:outputLink></li>
+        <li><h:outputLink value="soporte.xhtml">🛠 Soporte</h:outputLink></li>
+        <li><h:outputLink value="logout.xhtml">🚪 Cerrar Sesión</h:outputLink></li>
+    </ul>
+</div>
+
 <div class="container">
     <h2>Registro de Empleado</h2>
     <form>
@@ -108,5 +225,16 @@
         </div>
     </form>
 </div>
+<script>
+    function toggleMenu() {
+        let sidebar = document.getElementById("sidebar");
+        let overlay = document.getElementById("overlay");
+        let menuBtn = document.getElementById("menu-btn");
+
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+        menuBtn.classList.toggle("active");
+    }
+</script>
 </body>
 </html>
